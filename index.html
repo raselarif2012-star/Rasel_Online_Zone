@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="bn" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>রাসেল কম্পিউটার এন্ড অনলাইন জোন - সাহেবগঞ্জ, বাকেরগঞ্জ, বরিশাল</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font: Hind Siliguri -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        /* Custom smooth scrollbar */
+        ::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 via-emerald-50/20 to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 text-gray-800 dark:text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <header class="bg-gradient-to-r from-emerald-800 via-brand-700 to-teal-800 text-white shadow-xl sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
+        <div class="container mx-auto px-4 py-3.5 flex flex-wrap justify-between items-center">
+            <div class="flex items-center space-x-3.5">
+                <div class="bg-white text-emerald-700 p-2.5 rounded-2xl font-bold text-2xl shadow-lg transform hover:rotate-6 transition duration-300">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-wide drop-shadow">রাসেল কম্পিউটার এন্ড অনলাইন জোন</h1>
+                    <p class="text-xs text-emerald-100 flex items-center mt-0.5"><i class="fa-solid fa-location-dot mr-1.5 text-emerald-300"></i> ভূমি অফিস সংলগ্ন, সাহেবগঞ্জ, বাকেরগঞ্জ, বরিশাল</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-3 mt-3 sm:mt-0">
+                <a href="https://wa.me/8801575024281" target="_blank" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2 rounded-xl text-sm font-semibold flex items-center space-x-2 shadow-lg transform hover:-translate-y-0.5 transition duration-200">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>01575024281</span>
+                </a>
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-emerald-900/60 hover:bg-emerald-900 text-yellow-300 shadow-inner transition duration-200 focus:outline-none" title="থিম পরিবর্তন করুন">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <nav class="bg-emerald-950/80 dark:bg-gray-900 border-t border-emerald-700/40 px-3 py-2 flex space-x-2 overflow-x-auto whitespace-nowrap scrollbar-thin">
+            <button onclick="switchTab('home')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium bg-white text-emerald-800 shadow-md transition-all duration-200 flex items-center space-x-1.5" data-tab="home"><i class="fa-solid fa-house"></i><span>হোম</span></button>
+            <button onclick="switchTab('land')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="land"><i class="fa-solid fa-landmark"></i><span>ভূমি সেবা</span></button>
+            <button onclick="switchTab('nid')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="nid"><i class="fa-solid fa-id-card"></i><span>জন্ম ও এনআইডি</span></button>
+            <button onclick="switchTab('tax')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="tax"><i class="fa-solid fa-file-invoice-dollar"></i><span>টিন ও রিটার্ন</span></button>
+            <button onclick="switchTab('jobs')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="jobs"><i class="fa-solid fa-briefcase"></i><span>চাকরি ও শিক্ষা</span></button>
+            <button onclick="switchTab('passport')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="passport"><i class="fa-solid fa-passport"></i><span>পাসপোর্ট ও ভিসা</span></button>
+            <button onclick="switchTab('bills')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="bills"><i class="fa-solid fa-bolt"></i><span>বিদ্যুৎ ও বিল</span></button>
+            <button onclick="switchTab('computer')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="computer"><i class="fa-solid fa-computer"></i><span>কম্পিউটার ও আইটি</span></button>
+            <button onclick="switchTab('banking')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="banking"><i class="fa-solid fa-wallet"></i><span>ব্যাংকিং ও বিকাশ</span></button>
+            <button onclick="switchTab('guidelines')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="guidelines"><i class="fa-solid fa-book-open"></i><span>জরুরি গাইডলাইন</span></button>
+            <button onclick="switchTab('links')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="links"><i class="fa-solid fa-globe"></i><span>সরকারি লিংক</span></button>
+            <button onclick="switchTab('ageCalc')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="ageCalc"><i class="fa-solid fa-calculator"></i><span>বয়স ক্যালকুলেটর</span></button>
+            <button onclick="switchTab('landCalc')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="landCalc"><i class="fa-solid fa-ruler-combined"></i><span>জমির মাপ</span></button>
+            <button onclick="switchTab('ledger')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="ledger"><i class="fa-solid fa-book"></i><span>হিসাব খাতা</span></button>
+            <button onclick="switchTab('notice')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="notice"><i class="fa-solid fa-bullhorn"></i><span>নোটিশ</span></button>
+            <button onclick="switchTab('contact')" class="nav-btn px-3.5 py-1.5 rounded-xl text-sm font-medium text-emerald-100 hover:bg-emerald-800/60 transition-all duration-200 flex items-center space-x-1.5" data-tab="contact"><i class="fa-solid fa-address-book"></i><span>যোগাযোগ</span></button>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 flex-grow space-y-6">
+
+        <!-- TAB: HOME -->
+        <div id="tab-home" class="tab-content space-y-8 animate-fade">
+            <div class="relative bg-gradient-to-br from-emerald-600 via-teal-700 to-emerald-900 text-white rounded-3xl p-8 sm:p-12 shadow-2xl overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl">
+                    <i class="fa-solid fa-laptop-file"></i>
+                </div>
+                <div class="relative z-10 max-w-2xl space-y-4">
+                    <span class="bg-emerald-500/30 text-emerald-200 border border-emerald-400/30 text-xs px-3.5 py-1 rounded-full font-semibold uppercase tracking-wider">বিশ্বস্ত অনলাইন ও কম্পিউটার সেবা কেন্দ্র</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">ডিজিটাল সেবা এখন আপনার হাতের মুঠোয়</h2>
+                    <p class="text-emerald-100 text-sm sm:text-lg leading-relaxed">নামজারী, ডিসিআর, খাজনা, জন্ম নিবন্ধন, টিআইএন, চাকরির আবেদন, পাসপোর্ট এবং সকল প্রকার কম্পিউটার কাজ অত্যন্ত দ্রুত ও নির্ভুলভাবে সম্পন্ন করা হয়।</p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="switchTab('land')" class="bg-white text-emerald-800 px-7 py-3 rounded-2xl font-bold shadow-xl hover:bg-emerald-50 transform hover:-translate-y-0.5 transition">সকল সেবা দেখুন</button>
+                        <a href="https://wa.me/8801575024281" target="_blank" class="bg-emerald-800/80 hover:bg-emerald-900 text-white border border-emerald-600 px-7 py-3 rounded-2xl font-bold shadow-xl transition flex items-center space-x-2">
+                            <i class="fa-brands fa-whatsapp text-xl text-green-400"></i>
+                            <span>হোয়াটসঅ্যাপে চ্যাট করুন</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlights Quick Grid -->
+            <div>
+                <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fa-solid fa-star text-amber-500 mr-2"></i> জনপ্রিয় ও প্রধান সেবাসমূহ</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+                    <div onclick="switchTab('land')" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:border-emerald-500 cursor-pointer transition transform hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-landmark"></i></div>
+                        <h4 class="font-bold text-lg mb-1">নামজারী ও খাজনা</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">অনলাইন নামজারী আবেদন, ডিসিআর ও ভূমি উন্নয়ন কর পরিশোধ।</p>
+                    </div>
+                    <div onclick="switchTab('nid')" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:border-emerald-500 cursor-pointer transition transform hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-id-card"></i></div>
+                        <h4 class="font-bold text-lg mb-1">জন্ম ও এনআইডি</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">নতুন জন্ম নিবন্ধন, এনআইডি কার্ড ডাউনলোড ও তথ্য সংশোধন।</p>
+                    </div>
+                    <div onclick="switchTab('tax')" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:border-emerald-500 cursor-pointer transition transform hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                        <h4 class="font-bold text-lg mb-1">টিআইএন ও রিটার্ন</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">নতুন টিআইএন সার্টিফিকেট ও জিরো রিটার্ন সাবমিশন।</p>
+                    </div>
+                    <div onclick="switchTab('jobs')" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:border-emerald-500 cursor-pointer transition transform hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-briefcase"></i></div>
+                        <h4 class="font-bold text-lg mb-1">চাকরির আবেদন</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">সকল সরকারি-বেসরকারি চাকরির অনলাইন আবেদন ও ফি পেমেন্ট।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: LAND SERVICES -->
+        <div id="tab-land" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-landmark text-emerald-600 mr-2.5"></i> ভূমি ও জমি সংক্রান্ত সকল সেবা</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">জমিজমার নামজারী, খাজনা ও খতিয়ান উত্তোলনের বিশ্বস্ত মাধ্যম।</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-file-pen mr-2"></i> নামজারী (রেকর্ড) আবেদন</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">অনলাইনে সঠিক নিয়মে নামজারী আবেদন ও প্রয়োজনীয় ফাইল প্রস্তুতকরণ।</p>
+                    </div>
+                    <a href="https://mutation.land.gov.bd" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs py-2.5 rounded-xl font-semibold shadow transition">অফিসিয়াল পোর্টাল</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-receipt mr-2"></i> ডিসিআর ও খতিয়ান উত্তোলন</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">সার্টিফাইড খতিয়ান ও ডিসিআর কপি অনলাইনের মাধ্যমে উত্তোলন।</p>
+                    </div>
+                    <a href="https://www.land.gov.bd" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs py-2.5 rounded-xl font-semibold shadow transition">খতিয়ান দেখুন</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-coins mr-2"></i> ভূমি উন্নয়ন কর (খাজনা)</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">হালসন পর্যন্ত খাজনা পরিশোধ ও ডিজিটাল দাখিলা প্রিন্ট।</p>
+                    </div>
+                    <a href="https://ldtax.gov.bd" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs py-2.5 rounded-xl font-semibold shadow transition">খাজনা পরিশোধ সাইট</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-map mr-2"></i> মৌজা ম্যাপ ও নকশা</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">অনলাইনে জমির মৌজা ম্যাপ বা নকশার জন্য আবেদন ও সংগ্রহ।</p>
+                    </div>
+                    <a href="https://dlrs.gov.bd" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs py-2.5 rounded-xl font-semibold shadow transition">ম্যাপ পোর্টাল</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: NID & BIRTH -->
+        <div id="tab-nid" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-id-card text-emerald-600 mr-2.5"></i> জন্ম নিবন্ধন ও জাতীয় পরিচয়পত্র সেবা</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">নতুন জন্ম সনদ, এনআইডি ও সংশোধন সংক্রান্ত সকল কাজ।</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-baby mr-2"></i> নতুন জন্ম নিবন্ধন আবেদন</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">অনলাইনে নতুন জন্ম সনদের জন্য আবেদন ও প্রিন্ট কপি সংগ্রহ।</p>
+                    </div>
+                    <a href="https://bdris.gov.bd" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs py-2.5 rounded-xl font-semibold shadow transition">জন্ম নিবন্ধন পোর্টাল</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-address-card mr-2"></i> এনআইডি (NID) সেবা</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">নতুন ভোটার ফরম পূরণ, এনআইডি কার্ড ডাউনলোড ও তথ্য সংশোধন।</p>
+                    </div>
+                    <a href="https://services.nidw.gov.bd" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs py-2.5 rounded-xl font-semibold shadow transition">NID পোর্টাল</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-pen-to-square mr-2"></i> জন্ম নিবন্ধন সংশোধন</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">নাম, বয়স বা পিতা-মাতার নাম জন্ম সনদে সংশোধন আবেদন।</p>
+                    </div>
+                    <a href="https://bdris.gov.bd" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs py-2.5 rounded-xl font-semibold shadow transition">সংশোধন সাইট</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: TAX & TIN -->
+        <div id="tab-tax" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-file-invoice-dollar text-emerald-600 mr-2.5"></i> টিআইএন ও আয়কর সেবা</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">দ্রুত টিআইএন সার্টিফিকেট ও বার্ষিক রিটার্ন সাবমিশন।</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-file-contract mr-2"></i> নতুন টিআইএন (TIN) সার্টিফিকেট</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">এনআইডি কার্ড ও মোবাইল নম্বর দিয়ে তাৎক্ষণিকভাবে নতুন টিআইএন তৈরি।</p>
+                    </div>
+                    <a href="https://secure.incometax.gov.bd" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs py-2.5 rounded-xl font-semibold shadow transition">TIN পোর্টাল</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-scale-balanced mr-2"></i> আয়কর ও জিরো রিটার্ন দাখিল</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">সহজ ও নির্ভুলভাবে বার্ষিক আয়কর রিটার্ন এবং জিরো রিটার্ন সাবমিট।</p>
+                    </div>
+                    <a href="https://etaxnbr.gov.bd" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs py-2.5 rounded-xl font-semibold shadow transition">NBR পোর্টাল</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: JOBS & EDUCATION -->
+        <div id="tab-jobs" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-briefcase text-emerald-600 mr-2.5"></i> চাকরি ও শিক্ষা সংক্রান্ত সেবা</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">সকল সরকারি-বেসরকারি চাকরির আবেদন ও শিক্ষা বোর্ড সংক্রান্ত কাজ।</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-user-tie mr-2"></i> চাকরির অনলাইন আবেদন</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">বিসিএস, ব্যাংক, শিক্ষক নিবন্ধন ও অন্যান্য চাকরির ফরম পূরণ ও পেমেন্ট।</p>
+                    </div>
+                    <a href="http://teletalk.com.bd" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs py-2.5 rounded-xl font-semibold shadow transition">টেলিটক জব পোর্টাল</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-graduation-cap mr-2"></i> শিক্ষা বোর্ড ফলাফল ও ভর্তি</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">এসএসসি, এইচএসসি ও ডিগ্রি রেজাল্ট চেক এবং একাদশ শ্রেণিতে ভর্তি আবেদন।</p>
+                    </div>
+                    <a href="http://www.educationboardresults.gov.bd" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs py-2.5 rounded-xl font-semibold shadow transition">রেজাল্ট সাইট</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-file-lines mr-2"></i> সিভি ও বায়োডাটা তৈরি</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">চাকরি বা বিয়ের জন্য আকর্ষণীয় প্রফেশনাল সিভি ও বায়োডাটা ডিজাইন।</p>
+                    </div>
+                    <button onclick="switchTab('contact')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs py-2.5 rounded-xl font-semibold shadow transition">যোগাযোগ করুন</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: PASSPORT & VISA -->
+        <div id="tab-passport" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-passport text-emerald-600 mr-2.5"></i> পাসপোর্ট ও ভিসা সেবা</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">ই-পাসপোর্ট আবেদন এবং ভিসা সংক্রান্ত তথ্য সহায়তা।</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-id-badge mr-2"></i> ই-পাসপোর্ট অনলাইন আবেদন</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">নতুন ই-পাসপোর্ট ফরম পূরণ, ফি জমা ও ফিঙ্গারপ্রিন্ট অ্যাপয়েন্টমেন্ট বুকিং।</p>
+                    </div>
+                    <a href="https://www.epassport.gov.bd" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs py-2.5 rounded-xl font-semibold shadow transition">ই-পাসপোর্ট সাইট</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-plane-departure mr-2"></i> ভিসা চেক ও এয়ার টিকিট</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">বিদেশগামী কর্মীদের ভিসা স্ট্যাটাস চেক এবং বিমান টিকিট বুকিং সহায়তা।</p>
+                    </div>
+                    <a href="https://www.bmet.gov.bd" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs py-2.5 rounded-xl font-semibold shadow transition">BMET পোর্টাল</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: BILLS -->
+        <div id="tab-bills" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-bolt text-emerald-600 mr-2.5"></i> বিদ্যুৎ ও ইউটিলিটি বিল সেবা</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">পল্লি বিদ্যুৎ, নেসককো, পিডিবি ও অন্যান্য ইউটিলিটি বিল পরিশোধ।</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700">
+                    <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-lightbulb mr-2"></i> পল্লি বিদ্যুৎ বিল (REB)</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">পল্লি বিদ্যুতের মাসিক বিল চেক ও পেমেন্ট সেবা।</p>
+                    <a href="https://bbreb.gov.bd" target="_blank" class="inline-block bg-emerald-600 text-white text-xs px-4 py-2 rounded-xl font-semibold">পল্লি বিদ্যুৎ সাইট</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700">
+                    <h3 class="font-bold text-lg text-emerald-600 mb-2"><i class="fa-solid fa-faucet mr-2"></i> পানি ও গ্যাস বিল</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">সাসসাশ্রয়ী ও দ্রুত ইউটিলিটি বিল পরিশোধের সুবিধা।</p>
+                    <button onclick="switchTab('contact')" class="inline-block bg-emerald-600 text-white text-xs px-4 py-2 rounded-xl font-semibold">যোগাযোগ করুন</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: COMPUTER & IT -->
+        <div id="tab-computer" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-computer text-emerald-600 mr-2.5"></i> কম্পিউটার ও আইটি সেবা</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">প্রিন্ট, স্ক্যান, ল্যামিনেশন, কম্পোজ ও গ্রাফিক্স ডিজাইন।</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 text-center">
+                    <div class="text-4xl text-emerald-600 mb-3"><i class="fa-solid fa-print"></i></div>
+                    <h4 class="font-bold text-lg mb-1">কালার প্রিন্ট ও স্ক্যান</h4>
+                    <p class="text-xs text-gray-500">উন্নত মানের লেজার ও কালার প্রিন্টিং।</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 text-center">
+                    <div class="text-4xl text-emerald-600 mb-3"><i class="fa-solid fa-file-shield"></i></div>
+                    <h4 class="font-bold text-lg mb-1">ল্যামিনেশন ও বাইন্ডিং</h4>
+                    <p class="text-xs text-gray-500">দলিল ও সার্টিফিকেট ল্যামিনেশন।</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 text-center">
+                    <div class="text-4xl text-emerald-600 mb-3"><i class="fa-solid fa-keyboard"></i></div>
+                    <h4 class="font-bold text-lg mb-1">বাংলা ও ইংরেজি কম্পোজ</h4>
+                    <p class="text-xs text-gray-500">প্রশ্নপত্র, বই ও অ্যাপ্লিকেশন টাইপিং।</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 text-center">
+                    <div class="text-4xl text-emerald-600 mb-3"><i class="fa-solid fa-camera-retro"></i></div>
+                    <h4 class="font-bold text-lg mb-1">পাসপোর্ট সাইজ ছবি</h4>
+                    <p class="text-xs text-gray-500">তাৎক্ষণিক ছবি তোলা ও প্রিন্ট।</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: BANKING & BKASH -->
+        <div id="tab-banking" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-wallet text-emerald-600 mr-2.5"></i> অনলাইন ব্যাংকিং ও মোবাইল ফাইন্যান্স</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">বিকাশ, নগদ, রকেট ক্যাশ ইন/আউট ও মানি ট্রান্সফার।</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 text-center space-y-2">
+                    <div class="text-3xl font-extrabold text-pink-600">bkash</div>
+                    <h4 class="font-bold text-lg">বিকাশ সেবা</h4>
+                    <p class="text-xs text-gray-500">ক্যাশ ইন, ক্যাশ আউট, সেন্ড মানি ও পেমেন্ট।</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 text-center space-y-2">
+                    <div class="text-3xl font-extrabold text-orange-600">Nagad</div>
+                    <h4 class="font-bold text-lg">নগদ সেবা</h4>
+                    <p class="text-xs text-gray-500">নিরাপদ ক্যাশ আউট ও সেন্ড মানি।</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 text-center space-y-2">
+                    <div class="text-3xl font-extrabold text-purple-600">Rocket</div>
+                    <h4 class="font-bold text-lg">রকেট ও ব্যাংক লেনদেন</h4>
+                    <p class="text-xs text-gray-500">ডাচ-বাংলা ব্যাংক ও অন্যান্য ব্যাংকিং সেবা।</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: GUIDELINES -->
+        <div id="tab-guidelines" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-book-open text-emerald-600 mr-2.5"></i> জরুরি কাগজপত্রের গাইডলাইন</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">নামজারী ও অন্যান্য আবেদনের সঠিক কাগজপত্রের তালিকা।</p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-md space-y-6 border border-gray-100 dark:border-gray-700">
+                <h3 class="text-xl font-bold text-emerald-600"><i class="fa-solid fa-file-lines mr-2"></i> ১. নামজারী বা রেকর্ড আবেদনের প্রয়োজনীয় কাগজপত্র:</h3>
+                
+                <div class="space-y-4 text-sm">
+                    <div class="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                        <h4 class="font-bold text-base mb-2 text-emerald-700 dark:text-emerald-400">📌 কমন বিষয়সমূহ (সকল আবেদনের ক্ষেত্রে):</h4>
+                        <ul class="list-disc list-inside space-y-1.5 text-gray-600 dark:text-gray-300">
+                            <li>আবেদনকারীর সদ্য তোলা পাসপোর্ট সাইজ রঙিন ছবি।</li>
+                            <li>আবেদনকারীর মূল জাতীয় পরিচয়পত্র (NID) অথবা জন্ম নিবন্ধনের কপি।</li>
+                            <li>সচল মোবাইল নম্বর (ওটিপি ও এসএমএস পাওয়ার জন্য)।</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                        <h4 class="font-bold text-base mb-2 text-emerald-700 dark:text-emerald-400">📌 দলিল মূলে আবেদন করার ক্ষেত্রে (যদি দাতাদের নামে রেকর্ড থাকে):</h4>
+                        <ul class="list-disc list-inside space-y-1.5 text-gray-600 dark:text-gray-300">
+                            <li>আবেদনকারীর ছবি ও এনআইডি কপি।</li>
+                            <li>মূল দলিল অথবা দলিলের সার্টিফাইড কপি (নকল)।</li>
+                            <li>যে খতিয়ান থেকে জমি হস্তান্তর হয়েছে, সেই খতিয়ানের কপি।</li>
+                            <li>হালসন পর্যন্ত পরিশোধিত ভূমি উন্নয়ন করের (খাজনা) দাখিলা।</li>
+                            <li>প্রযোজ্য ক্ষেত্রে অন্যান্য আনুষঙ্গিক কাগজপত্রাদী।</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                        <h4 class="font-bold text-base mb-2 text-emerald-700 dark:text-emerald-400">📌 যদি দাতা রেকর্ড সূত্রে মালিক না হয়ে ওয়ারিশ সূত্রে হন:</h4>
+                        <ul class="list-disc list-inside space-y-1.5 text-gray-600 dark:text-gray-300">
+                            <li>আবেদনকারীর ছবি ও এনআইডি কপি।</li>
+                            <li>মূল দলিল বা দলিলের সার্টিফাইড কপি।</li>
+                            <li>বৈধ ওয়ারিশ সনদ (যেখানে উত্তরাধিকার প্রমাণ করা হয়)।</li>
+                            <li>সর্বশেষ খতিয়ানের কপি ও পূর্ববর্তী মালিকদের নামজারী খতিয়ান।</li>
+                            <li>প্রযোজ্য ক্ষেত্রে অন্যান্য কাগজপত্রাদী।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: GOV LINKS -->
+        <div id="tab-links" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-globe text-emerald-600 mr-2.5"></i> গুরুত্বপূর্ণ সরকারি লিংকসমূহ</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">সবচেয়ে বেশি ব্যবহৃত সরকারি ওয়েবসাইটের সরাসরি লিঙ্ক।</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <a href="https://www.bangladesh.gov.bd" target="_blank" class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:border-emerald-500 transition flex items-center space-x-4">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 flex items-center justify-center text-lg"><i class="fa-solid fa-link"></i></div>
+                    <div>
+                        <h4 class="font-bold text-sm">জাতীয় তথ্য বাতায়ন</h4>
+                        <span class="text-xs text-gray-400">bangladesh.gov.bd</span>
+                    </div>
+                </a>
+                <a href="https://mutation.land.gov.bd" target="_blank" class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:border-emerald-500 transition flex items-center space-x-4">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 flex items-center justify-center text-lg"><i class="fa-solid fa-link"></i></div>
+                    <div>
+                        <h4 class="font-bold text-sm">ই-নামজারী পোর্টাল</h4>
+                        <span class="text-xs text-gray-400">mutation.land.gov.bd</span>
+                    </div>
+                </a>
+                <a href="https://ldtax.gov.bd" target="_blank" class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:border-emerald-500 transition flex items-center space-x-4">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 flex items-center justify-center text-lg"><i class="fa-solid fa-link"></i></div>
+                    <div>
+                        <h4 class="font-bold text-sm">ভূমি উন্নয়ন কর</h4>
+                        <span class="text-xs text-gray-400">ldtax.gov.bd</span>
+                    </div>
+                </a>
+                <a href="https://bdris.gov.bd" target="_blank" class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:border-emerald-500 transition flex items-center space-x-4">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 flex items-center justify-center text-lg"><i class="fa-solid fa-link"></i></div>
+                    <div>
+                        <h4 class="font-bold text-sm">জন্ম ও মৃত্যু নিবন্ধন</h4>
+                        <span class="text-xs text-gray-400">bdris.gov.bd</span>
+                    </div>
+                </a>
+                <a href="https://services.nidw.gov.bd" target="_blank" class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:border-emerald-500 transition flex items-center space-x-4">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 flex items-center justify-center text-lg"><i class="fa-solid fa-link"></i></div>
+                    <div>
+                        <h4 class="font-bold text-sm">এনআইডি সার্ভিসেস</h4>
+                        <span class="text-xs text-gray-400">nidw.gov.bd</span>
+                    </div>
+                </a>
+                <a href="https://www.epassport.gov.bd" target="_blank" class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:border-emerald-500 transition flex items-center space-x-4">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 flex items-center justify-center text-lg"><i class="fa-solid fa-link"></i></div>
+                    <div>
+                        <h4 class="font-bold text-sm">ই-পাসপোর্ট পোর্টাল</h4>
+                        <span class="text-xs text-gray-400">epassport.gov.bd</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- TAB: AGE CALCULATOR -->
+        <div id="tab-ageCalc" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-calculator text-emerald-600 mr-2.5"></i> বয়স ক্যালকুলেটর</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">আপনার জন্মতারিখ দিয়ে নির্ভুল বয়স বের করুন।</p>
+            </div>
+            <div class="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-md max-w-lg mx-auto space-y-5 border border-gray-100 dark:border-gray-700">
+                <div>
+                    <label class="block text-sm font-semibold mb-2">জন্ম তারিখ:</label>
+                    <input type="date" id="birthDate" class="w-full p-3 rounded-xl border dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:border-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2">এই তারিখ পর্যন্ত বয়স বের করুন:</label>
+                    <input type="date" id="targetDate" class="w-full p-3 rounded-xl border dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:border-emerald-500">
+                </div>
+                <button onclick="calculateAge()" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700 shadow-lg transition">বয়স হিসাব করুন</button>
+                <div id="ageResult" class="p-4 bg-emerald-50 dark:bg-gray-700 rounded-xl text-center font-bold text-lg text-emerald-700 dark:text-emerald-400 hidden"></div>
+            </div>
+        </div>
+
+        <!-- TAB: LAND CONVERTER -->
+        <div id="tab-landCalc" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-ruler-combined text-emerald-600 mr-2.5"></i> জমির মাপ কনভার্টার</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">শতক থেকে কাঠা, বিঘা ও বর্গফুটে রূপান্তর করুন।</p>
+            </div>
+            <div class="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-md max-w-lg mx-auto space-y-5 border border-gray-100 dark:border-gray-700">
+                <div>
+                    <label class="block text-sm font-semibold mb-2">শতক (Decimal) পরিমাণ:</label>
+                    <input type="number" id="decimalInput" placeholder="যেমন: 5" class="w-full p-3 rounded-xl border dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:border-emerald-500" oninput="convertLand()">
+                </div>
+                <div id="landResult" class="p-5 bg-emerald-50 dark:bg-gray-700 rounded-xl space-y-3 text-sm">
+                    <p class="flex justify-between"><strong>কাঠা:</strong> <span id="kathaVal" class="font-bold text-emerald-700 dark:text-emerald-400">0</span></p>
+                    <p class="flex justify-between"><strong>বিঘা:</strong> <span id="bighaVal" class="font-bold text-emerald-700 dark:text-emerald-400">0</span></p>
+                    <p class="flex justify-between"><strong>বর্গফুট (আনুমানিক):</strong> <span id="sqftVal" class="font-bold text-emerald-700 dark:text-emerald-400">0</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: DAILY LEDGER -->
+        <div id="tab-ledger" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-book text-emerald-600 mr-2.5"></i> দৈনিক হিসাব খাতা</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">দোকানের দৈনিক লেনদেন ও আয় হিসাব সংরক্ষণ করুন।</p>
+            </div>
+            <div class="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-md max-w-3xl mx-auto space-y-6 border border-gray-100 dark:border-gray-700">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <input type="text" id="ledgerDesc" placeholder="কাজের বিবরণ (যেমন: নামজারী)" class="p-3 rounded-xl border dark:bg-gray-700 dark:border-gray-600 text-sm focus:outline-none focus:border-emerald-500">
+                    <input type="number" id="ledgerAmount" placeholder="টাকার পরিমাণ" class="p-3 rounded-xl border dark:bg-gray-700 dark:border-gray-600 text-sm focus:outline-none focus:border-emerald-500">
+                    <button onclick="addLedgerEntry()" class="bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700 text-sm shadow transition">যোগ করুন</button>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-gray-100 dark:bg-gray-700">
+                                <th class="p-3 border dark:border-gray-600">তারিখ ও সময়</th>
+                                <th class="p-3 border dark:border-gray-600">বিবরণ</th>
+                                <th class="p-3 border dark:border-gray-600">টাকা</th>
+                                <th class="p-3 border dark:border-gray-600 text-center">অ্যাকশন</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ledgerTableBody">
+                            <!-- JS injected -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-right font-bold text-xl pt-2">
+                    মোট আয়: <span id="totalLedgerAmount" class="text-emerald-600">০</span> টাকা
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: NOTICE BOARD -->
+        <div id="tab-notice" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-bullhorn text-emerald-600 mr-2.5"></i> নোটিশ বোর্ড</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">গুরুত্বপূর্ণ ঘোষণা ও আপডেট।</p>
+            </div>
+            <div class="space-y-4 max-w-3xl mx-auto">
+                <div class="bg-amber-50 dark:bg-gray-800 border-l-4 border-amber-500 p-5 rounded-2xl shadow-md">
+                    <h3 class="font-bold text-amber-700 dark:text-amber-400 text-lg">🔔 বিশেষ ঘোষণা!</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">আমাদের দোকানে এখন থেকে নতুন নিয়মে জমিজমার নামজারী, ডিসিআর ও অনলাইনে খাজনা পরিশোধের কাজ অত্যন্ত দ্রুত সম্পন্ন করা হচ্ছে।</p>
+                    <span class="text-xs text-gray-400 mt-3 block">তারিখ: সেপ্টেম্বর ২৬, ২০২৬</span>
+                </div>
+                <div class="bg-emerald-50 dark:bg-gray-800 border-l-4 border-emerald-500 p-5 rounded-2xl shadow-md">
+                    <h3 class="font-bold text-emerald-700 dark:text-emerald-400 text-lg">💡 পরামর্শ</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">যেকোনো সরকারি চাকরির আবেদন বা জন্ম নিবন্ধনের জন্য আসার পূর্বে মূল কাগজপত্র সাথে নিয়ে আসুন।</p>
+                    <span class="text-xs text-gray-400 mt-3 block">তারিখ: সেপ্টেম্বর ২৬, ২০২৬</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: CONTACT -->
+        <div id="tab-contact" class="tab-content hidden space-y-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h2 class="text-2xl font-bold flex items-center"><i class="fa-solid fa-address-book text-emerald-600 mr-2.5"></i> যোগাযোগ ও ঠিকানা</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">আমাদের সাথে সরাসরি যোগাযোগের ঠিকানা ও মাধ্যম।</p>
+            </div>
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-md max-w-lg mx-auto text-center space-y-5 border border-gray-100 dark:border-gray-700">
+                <div class="bg-emerald-50 dark:bg-gray-700 p-5 rounded-full w-20 h-20 flex items-center justify-center mx-auto text-emerald-600 text-3xl shadow-inner">
+                    <i class="fa-solid fa-store"></i>
+                </div>
+                <h3 class="text-2xl font-bold">রাসেল কম্পিউটার এন্ড অনলাইন জোন</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300"><i class="fa-solid fa-location-dot text-emerald-600 mr-2"></i> ভূমি অফিস সংলগ্ন, সাহেবগঞ্জ, বাকেরগঞ্জ, বরিশাল</p>
+                <p class="text-sm text-gray-600 dark:text-gray-300"><i class="fa-brands fa-whatsapp text-green-500 mr-2"></i> হটলাইন/হোয়াটসঅ্যাপ: 01575024281</p>
+                <a href="https://wa.me/8801575024281" target="_blank" class="inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-3.5 rounded-2xl font-bold shadow-xl transition transform hover:-translate-y-0.5">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span>সরাসরি হোয়াটসঅ্যাপে চ্যাট করুন</span>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="fixed bottom-5 right-5 z-50">
+        <button onclick="toggleChat()" id="chatToggleBtn" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white w-14 h-14 rounded-2xl shadow-2xl flex items-center justify-center text-2xl transition transform hover:scale-105 focus:outline-none">
+            <i class="fa-solid fa-comment-dots"></i>
+        </button>
+
+        <div id="chatBox" class="hidden bg-white dark:bg-gray-800 w-80 sm:w-96 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden transition-all duration-300 absolute bottom-16 right-0">
+            <!-- Chat Header -->
+            <div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white p-4 flex justify-between items-center shadow">
+                <div class="flex items-center space-x-2.5">
+                    <div class="w-3.5 h-3.5 bg-green-400 rounded-full animate-ping"></div>
+                    <span class="font-bold text-sm">রাসেল কম্পিউটার সহকারী (AI)</span>
+                </div>
+                <button onclick="toggleChat()" class="text-white hover:text-gray-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <!-- Chat Messages -->
+            <div id="chatMessages" class="p-4 h-80 overflow-y-auto space-y-3.5 text-sm bg-gray-50 dark:bg-gray-900">
+                <div class="bg-white dark:bg-gray-800 p-3 rounded-2xl shadow-sm max-w-[85%] border dark:border-gray-700">
+                    আসসালামু আলাইকুম! "রাসেল কম্পিউটার এন্ড অনলাইন জোন"-এ আপনাকে স্বাগতম। নামজারী, টিআইএন বা অন্যান্য সেবা সম্পর্কে আমাকে জিজ্ঞেস করতে পারেন।
+                </div>
+            </div>
+            <!-- Chat Input -->
+            <div class="p-3 bg-white dark:bg-gray-800 border-t dark:border-gray-700 flex space-x-2">
+                <input type="text" id="chatInput" placeholder="আপনার প্রশ্ন এখানে লিখুন..." class="flex-grow p-2.5 text-sm rounded-xl border dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:border-emerald-500" onkeypress="handleChatKey(event)">
+                <button onclick="sendChatMessage()" class="bg-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-emerald-700 shadow"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-emerald-950 dark:bg-gray-950 text-white py-8 mt-12 border-t border-emerald-900 text-center text-sm shadow-inner">
+        <div class="container mx-auto px-4 space-y-2">
+            <p class="font-semibold">&copy; ২০২৬ রাসেল কম্পিউটার এন্ড অনলাইন জোন। সর্বস্বত্ব সংরক্ষিত।</p>
+            <p class="text-xs text-emerald-300">ঠিকানা: ভূমি অফিস সংলগ্ন, সাহেবগঞ্জ, বাকেরগঞ্জ, বরিশাল | WhatsApp: 01575024281</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'text-emerald-800', 'shadow-md');
+                btn.classList.add('text-emerald-100', 'hover:bg-emerald-800/60');
+            });
+
+            const activeBtn = document.querySelector(`[data-tab="${tabId}"]`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-emerald-100', 'hover:bg-emerald-800/60');
+                activeBtn.classList.add('bg-white', 'text-emerald-800', 'shadow-md');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.getElementById('themeIcon').classList.remove('fa-moon');
+            document.getElementById('themeIcon').classList.add('fa-sun');
+        }
+
+        // Age Calculator
+        function calculateAge() {
+            const birthDateStr = document.getElementById('birthDate').value;
+            const targetDateStr = document.getElementById('targetDate').value || new Date().toISOString().split('T')[0];
+            const resDiv = document.getElementById('ageResult');
+
+            if (!birthDateStr) {
+                alert('দয়া করে জন্ম তারিখ সিলেক্ট করুন!');
+                return;
+            }
+
+            const birthDate = new Date(birthDateStr);
+            const targetDate = new Date(targetDateStr);
+
+            let years = targetDate.getFullYear() - birthDate.getFullYear();
+            let months = targetDate.getMonth() - birthDate.getMonth();
+            let days = targetDate.getDate() - birthDate.getDate();
+
+            if (days < 0) {
+                months--;
+                const prevMonth = new Date(targetDate.getFullYear(), targetDate.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            resDiv.classList.remove('hidden');
+            resDiv.innerHTML = `বয়স: ${years} বছর, ${months} মাস, ${days} দিন`;
+        }
+
+        // Land Converter
+        function convertLand() {
+            const decimal = parseFloat(document.getElementById('decimalInput').value) || 0;
+            document.getElementById('kathaVal').innerText = (decimal * 0.605).toFixed(2);
+            document.getElementById('bighaVal').innerText = (decimal * 0.033).toFixed(3);
+            document.getElementById('sqftVal').innerText = (decimal * 435.6).toFixed(0);
+        }
+
+        // Daily Ledger (LocalStorage)
+        let ledgerList = JSON.parse(localStorage.getItem('ledgerList')) || [];
+
+        function renderLedger() {
+            const tbody = document.getElementById('ledgerTableBody');
+            tbody.innerHTML = '';
+            let total = 0;
+
+            if (ledgerList.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-400">কোনো হিসাব যুক্ত করা হয়নি।</td></tr>`;
+            }
+
+            ledgerList.forEach((item, index) => {
+                total += item.amount;
+                tbody.innerHTML += `
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="p-3">${item.date}</td>
+                        <td class="p-3">${item.desc}</td>
+                        <td class="p-3 font-bold">${item.amount} টাকা</td>
+                        <td class="p-3 text-center"><button onclick="deleteLedger(${index})" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button></td>
+                    </tr>
+                `;
+            });
+            document.getElementById('totalLedgerAmount').innerText = total;
+            localStorage.setItem('ledgerList', JSON.stringify(ledgerList));
+        }
+
+        function addLedgerEntry() {
+            const desc = document.getElementById('ledgerDesc').value.trim();
+            const amount = parseFloat(document.getElementById('ledgerAmount').value);
+
+            if (!desc || isNaN(amount)) {
+                alert('সঠিক বিবরণ ও টাকার পরিমাণ লিখুন!');
+                return;
+            }
+
+            const now = new Date().toLocaleString('bn-BD');
+            ledgerList.push({ date: now, desc, amount });
+            document.getElementById('ledgerDesc').value = '';
+            document.getElementById('ledgerAmount').value = '';
+            renderLedger();
+        }
+
+        function deleteLedger(index) {
+            ledgerList.splice(index, 1);
+            renderLedger();
+        }
+
+        renderLedger();
+
+        // Chatbot Toggle & Logic with WhatsApp Fallback
+        function toggleChat() {
+            const chatBox = document.getElementById('chatBox');
+            chatBox.classList.toggle('hidden');
+        }
+
+        function handleChatKey(e) {
+            if (e.key === 'Enter') sendChatMessage();
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.innerHTML += `<div class="bg-emerald-600 text-white p-3 rounded-2xl shadow-sm max-w-[85%] ml-auto">${msg}</div>`;
+            input.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                let reply = "";
+                const lowerMsg = msg.toLowerCase();
+
+                if (lowerMsg.includes('রেকর্ড') || lowerMsg.includes('নামজারী') || lowerMsg.includes('নামজারি')) {
+                    reply = "নামজারীর ক্ষেত্রে প্রথমে অনলাইনে আবেদন করতে হবে। দলিল মূলে আবেদনের ক্ষেত্রে দাতা ও গ্রহীতার এনআইডি, ছবি, মূল দলিল এবং খতিয়ানের কপি প্রয়োজন হয়। বিস্তারিত গাইডলাইন আমাদের ওয়েবসাইটের 'জরুরি গাইডলাইন' ট্যাবে দেওয়া আছে।";
+                } else if (lowerMsg.includes('টিন') || lowerMsg.includes('tin')) {
+                    reply = "টিআইএন (TIN) সার্টিফিকেট তোলার জন্য আপনার নিজস্ব সক্রিয় মোবাইল নম্বর এবং জাতীয় পরিচয়পত্র (NID) নিয়ে আমাদের দোকানে আসুন অথবা হোয়াটসঅ্যাপে পাঠান।";
+                } else if (lowerMsg.includes('জন্ম') || lowerMsg.includes('birth')) {
+                    reply = "নতুন জন্ম নিবন্ধনের জন্য জন্ম সনদের কাগজ ও বাবা-মায়ের এনআইডির কপি প্রয়োজন।";
+                } else {exc
+                    // Fallback when query is not understood: provide WhatsApp button
+                    reply = `আপনার বিষয়টি এআই চ্যাটবট পুরোপুরি বুঝতে পারেনি। বিস্তারিত জানতে সরাসরি আমাদের হোয়াটসঅ্যাপে যোগাযোগ করুন:<br><br><a href="https://wa.me/8801575024281?text=${encodeURIComponent(msg)}" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl font-bold text-xs shadow"><i class="fa-brands fa-whatsapp mr-1"></i> ০১৫৭৫০২৪২৮১ এ মেসেজ করুন</a>`;
+                }
+
+                chatMessages.innerHTML += `<div class="bg-white dark:bg-gray-800 p-3 rounded-2xl shadow-sm max-w-[85%] border dark:border-gray-700">${reply}</div>`;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 600);
+        }
+    </script>
+</body>
+</html>
